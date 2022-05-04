@@ -77,4 +77,34 @@ public class ListStack<T> implements Stack<T>{
     public void deleteStack(){
         top = null;
     }
+
+
+    /**
+     * 4-11 只使用pop和push 将stack反转
+     * 先把所有的数据用递归的方式取出来后，用递归的方式写入数据
+     */
+    public void reverStack()
+    {
+        if(isEmpty())
+        {
+            return ;
+        }
+        T data = pop();
+        reverStack();;
+        insertAtBottom(data);
+    }
+
+    public void insertAtBottom(T data)
+    {
+        if(isEmpty())
+        {
+            push(data);
+            return ;
+        }
+
+        T tmp = pop();
+        insertAtBottom(data);
+        push(tmp);
+
+    }
 }
