@@ -2,8 +2,8 @@ package LinkedList;
 
 public class ListNode <T>{
 
-    private ListNode prev = null;
-    private ListNode next = null;
+    private ListNode<T> prev = null;
+    private ListNode<T> next = null;
     private T val = null;
 
     public ListNode(T value)
@@ -11,21 +11,25 @@ public class ListNode <T>{
         val = value;
     }
 
-    public void setNext (ListNode next)
+    public T getValue()
+    {
+        return val;
+    }
+    public void setNext (ListNode<T> next)
     {
         this.next = next;
     }
 
-    public ListNode getNext()
+    public ListNode<T> getNext()
     {
         return next;
     }
 
-    public void setPrev(ListNode prev)
+    public void setPrev(ListNode<T> prev)
     {
         this.prev = prev;
     }
-    public ListNode getPrev()
+    public ListNode<T> getPrev()
     {
         return  prev;
     }
