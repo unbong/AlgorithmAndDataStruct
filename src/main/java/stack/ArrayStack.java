@@ -99,6 +99,8 @@ public class ArrayStack<T> implements Stack<T>{
         array = null;
     }
 
+    
+
     public static void main(String[] args) {
         Stack<Integer> arrayStacks = new ArrayStack<>(1);
         arrayStacks.push(1);
