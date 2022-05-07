@@ -1,6 +1,10 @@
 package stack;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+
 public class ListStack<T> implements Stack<T>{
+
 
     int capacity = 0;
     private ListNode<T> top = null;
@@ -76,6 +80,7 @@ public class ListStack<T> implements Stack<T>{
 
     public void deleteStack(){
         top = null;
+        capacity = 0;
     }
 
 
@@ -93,7 +98,6 @@ public class ListStack<T> implements Stack<T>{
         reverStack();;
         insertAtBottom(data);
     }
-
     public void insertAtBottom(T data)
     {
         if(isEmpty())
@@ -105,6 +109,33 @@ public class ListStack<T> implements Stack<T>{
         T tmp = pop();
         insertAtBottom(data);
         push(tmp);
+    }
 
+    public ArrayList<Integer> getSpan(ArrayList<T> input)
+    {
+        ArrayList<Integer> spans = new ArrayList<>();
+        for(int i = 0; i < input.size(); i++) {
+            T inVal = input.get(i);
+            if(isEmpty())
+            {
+                push(inVal);
+                spans.add(size());
+            }
+            else{
+                Integer topVal = (Integer)top();
+                Integer s = (Integer) inVal;
+                if(topVal.compareTo(s)>0)
+                {
+                    deleteStack();
+                    push(inVal);
+                }
+                else{
+                    push(inVal);
+                }
+
+                spans.add(size());
+            }
+        }
+        return spans;
     }
 }
