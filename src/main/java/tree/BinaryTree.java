@@ -191,13 +191,115 @@ public class BinaryTree<T extends Comparable<T>> {
 
     }
 
+    /**
+     * lesson 6-2 找到最大值的节点
+     * @return
+     */
     public T findMax()
     {
-        T max ;
+        BinaryTreeNode<T> tmpRoot= root;
+        ListStack<BinaryTreeNode<T>> stack = new ListStack<>();
+        T max = tmpRoot.getValue()  ;
 
-        max.compareTo()
+        while(true)
+        {
+            while(tmpRoot != null)
+            {
+                stack.push(tmpRoot);
+                if(max.compareTo(tmpRoot.getValue())<0){
+                    max = tmpRoot.getValue();
+                }
+                tmpRoot= tmpRoot.getLeft();
+            }
+
+            if( stack.isEmpty() )
+            {
+                break;
+            }
+
+            tmpRoot = stack.pop();
+            tmpRoot = tmpRoot.getRight();
+        }
+
+        return max;
     }
 
+    /**
+     * 6-5 追加节点
+     * @param value
+     */
+    public void addNode(T value)
+    {
+        BinaryTreeNode<T> newNode =  new BinaryTreeNode<T>(value);
+        ArrayDeque<BinaryTreeNode<T>> queue = new ArrayDeque<>();
+
+        if(root == null)
+        {
+            setRoot(newNode);
+            return;
+        }
+        BinaryTreeNode<T> tmpRoot = root;
+        queue.add(tmpRoot);
+
+
+        while(true)
+        {
+           if(queue.isEmpty())
+           {
+              break;
+           }
+            tmpRoot = queue.pop();
+           if(tmpRoot.getLeft() == null)
+           {
+
+               tmpRoot.setLeft(newNode);
+               break;
+           }else
+           {
+               queue.add(tmpRoot.getLeft());
+           }
+
+           if(tmpRoot.getRight() == null)
+           {
+               tmpRoot.setRight(newNode);
+               break;
+           }
+           else{
+               queue.add(tmpRoot.getRight());
+           }
+        }
+    }
+
+    /**
+     * 6-9 删除树
+     */
+    public void deleteTree()
+    {
+        deleteTree(this.root);
+    }
+
+    private void deleteTree(BinaryTreeNode<T> root)
+    {
+        if(root == null)
+        {
+            return;
+        }
+        deleteTree(root.getLeft());
+        deleteTree(root.getRight());
+        root.setRight(null);
+        root.setLeft(null);
+
+    }
+
+    /**
+     * lesson 6-10 求树的高度
+     *
+     * @return
+     */
+    public int getTreeHeight()
+    {
+
+    }
     public static void main(String[] args) {
 
 
