@@ -298,8 +298,46 @@ public class BinaryTree<T extends Comparable<T>> {
      */
     public int getTreeHeight()
     {
+        ArrayDeque<BinaryTreeNode<T>> queue = new ArrayDeque<>();
+        BinaryTreeNode<T> tmpRoot  = root;
+        int level = 0;
+        if(this.root ==  null)
+            return level;
+
+        queue.add(root);
+        while(true){
+            boolean isAdded = false;
+            if(queue.isEmpty() ==true)
+            {
+                break;
+            }
+
+            tmpRoot = queue.pop();
+            if( tmpRoot.getLeft() != null )
+            {
+                queue.push(tmpRoot.getLeft());
+                isAdded = true;
+            }
+
+            if(tmpRoot.getRight() != null)
+            {
+                queue.push(tmpRoot.getRight());
+                isAdded = true;
+            }
+
+            if (isAdded) level++;
+
+        }
+        return level;
+    }
+
+    public void getDeepestNode()
+    {
 
     }
+
+
+
     public static void main(String[] args) {
 
 
@@ -313,6 +351,10 @@ public class BinaryTree<T extends Comparable<T>> {
 
         BinaryTreeNode<Integer> node7 = new BinaryTreeNode<>(7);
 
+        BinaryTreeNode<Integer> node8 = new BinaryTreeNode<>(7);
+
+
+        node7.setRight(node8);
         node2.setLeft(node4);
         node2.setRight(node5);
 
@@ -327,7 +369,7 @@ public class BinaryTree<T extends Comparable<T>> {
         tree.setRoot(node1);
 
 
-        tree.postOrderNoRecursive();
+        int level = tree.getTreeHeight();
 //        tree.inOrder();
 //        tree.inOrderNoRecursive();
         System.out.println("s");
