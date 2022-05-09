@@ -331,7 +331,17 @@ public class BinaryTree<T extends Comparable<T>> {
         return level;
     }
 
+    /**
+     * 6-12
+     * 利用顺序访问的方式得到最后一个的节点
+     */
     public void getDeepestNode()
+    {
+
+    }
+
+
+    public void deleteNode()
     {
 
     }
