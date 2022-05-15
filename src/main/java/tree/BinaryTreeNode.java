@@ -15,24 +15,24 @@ public class BinaryTreeNode<T>{
     public T getValue() {
         return value;
     }
-    private BinaryTreeNode left = null;
-    private BinaryTreeNode right = null;
+    private BinaryTreeNode<T> left = null;
+    private BinaryTreeNode<T> right = null;
 
-    public BinaryTreeNode getRight() {
+    public BinaryTreeNode<T> getRight() {
         return right;
     }
 
-    public void setRight(BinaryTreeNode right) {
+    public void setRight(BinaryTreeNode<T> right) {
         this.right = right;
     }
 
 
 
-    public BinaryTreeNode getLeft() {
+    public BinaryTreeNode<T> getLeft() {
         return left;
     }
 
-    public void setLeft(BinaryTreeNode left) {
+    public void setLeft(BinaryTreeNode<T> left) {
         this.left = left;
     }
 }
