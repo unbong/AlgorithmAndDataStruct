@@ -15,6 +15,8 @@ public class BinaryTreeNode<T>{
     public T getValue() {
         return value;
     }
+
+    public void setValue(T val) {this.value = val;}
     private BinaryTreeNode<T> left = null;
     private BinaryTreeNode<T> right = null;
 

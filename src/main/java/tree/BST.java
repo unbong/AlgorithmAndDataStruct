@@ -64,16 +64,15 @@ public class BST <T extends Comparable<T>>{
                     {
                         tmpRoot = tmpRoot.getRight();
                     }
-
                 }
             }
         }
     }
 
-    public void deleteNode(T val)
-    {
-        BinaryTreeNode<T> tmpRoot = this.root;
-        BinaryTreeNode<T> parentNode = this.root;
+
+    private void deleteNode(T val , BinaryTreeNode<T> root){
+        BinaryTreeNode<T> tmpRoot = root;
+        BinaryTreeNode<T> parentNode = root;
         while(true)
         {
             if(tmpRoot.getValue().compareTo(val)>0)
@@ -105,16 +104,35 @@ public class BST <T extends Comparable<T>>{
                 else if( (tmpRoot.getLeft() == null && tmpRoot.getRight() != null) ||
                         (tmpRoot.getLeft() != null && tmpRoot.getRight() == null))
                 {
-                    BinaryTreeNode<T> tmpMaxNode = tmpRoot;
-                    BinaryTreeNode<T> tmpMaxNodeParant = tmpMaxNode;
 
-
-                    tmpMaxNodeParant.setRight( tmpMaxNode.getLeft());
-
-
+                    if(tmpRoot.getRight() != null)
+                    {
+                        if(parentNode.getLeft() == tmpRoot )
+                        {
+                            parentNode.setLeft(tmpRoot.getRight());
+                        }
+                        else {
+                            parentNode.setRight(tmpRoot.getRight());
+                        }
+                    }else if(tmpRoot.getLeft() != null)
+                    {
+                        if(parentNode.getLeft() == tmpRoot )
+                        {
+                            parentNode.setLeft(tmpRoot.getLeft());
+                        }
+                        else {
+                            parentNode.setRight(tmpRoot.getLeft());
+                        }
+                    }
                 }
                 // 两个子节点
                 else{
+                    // 从子的左节点取得最大值
+                    BinaryTreeNode<T> tmpMaxNode =  findMax(tmpRoot.getLeft());
+                    // 删掉最大值
+                    deleteNode(tmpMaxNode.getValue(), tmpRoot);
+
+                    tmpRoot.setValue(tmpMaxNode.getValue());
 
                 }
 
@@ -123,6 +141,10 @@ public class BST <T extends Comparable<T>>{
 
         }
 
+    }
+    public void deleteNode(T val)
+    {
+        deleteNode(val,this.root);
 
     }
 
