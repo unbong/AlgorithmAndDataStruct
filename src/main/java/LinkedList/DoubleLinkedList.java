@@ -6,6 +6,10 @@ public class DoubleLinkedList<T> {
     private ListNode<T> last = null;
     private int length = 0;
 
+    public ListNode<T> getFirst(){
+        return first;
+    }
+
     public void addNode(T value, int position)
     {
         ListNode<T> newNode = new ListNode<>(value);
@@ -46,6 +50,11 @@ public class DoubleLinkedList<T> {
             }
         }
         length++;
+    }
+
+    public int size()
+    {
+        return length;
     }
 
     public void removeNode(int position)
@@ -96,6 +105,21 @@ public class DoubleLinkedList<T> {
             }
         }
         length--;
+    }
+
+    public ListNode<T> getNode( ListNode<T> first , int index)
+    {
+        int j = 1;
+        ListNode<T> node = first;
+        while(true)
+        {
+            if(j == index )
+            {
+                return node;
+            }
+            node = node.getNext();
+            j ++;
+        }
     }
 
 

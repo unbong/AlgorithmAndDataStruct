@@ -1,5 +1,7 @@
 package tree;
 
+import LinkedList.DoubleLinkedList;
+import LinkedList.ListNode;
 import stack.ListStack;
 import stack.Stack;
 
@@ -172,5 +174,49 @@ public class BST <T extends Comparable<T>>{
             tmpRoot = tmpRoot.getRight();
 
         }
+    }
+
+
+    private ListNode<T> madeTreeNode(int start , int end, ListNode<T> first)
+    {
+        if(start > end) return null;
+        int mid = (end-start+1)/2 +1;
+        int index =start;
+
+        ListNode<T> root =  getMiddle( mid, first);
+
+        ListNode<T> left = madeTreeNode(start , start +mid-1, first);
+        ListNode<T> right = madeTreeNode(start + mid+1 , end, root);
+
+
+        root.setNext(right);
+        root.setPrev(left);
+
+        return root;
+
+    }
+
+    private ListNode<T> getMiddle(int mid, ListNode<T> first) {
+
+        int j = 1;
+        ListNode<T> node = first;
+        while(true)
+        {
+            if(j == mid )
+            {
+                return node;
+            }
+            node = node.getNext();
+            j ++;
+        }
+    }
+
+    public void  convertToBstFromDDL(DoubleLinkedList<T> ddl)
+    {
+        int size = ddl.size();
+        ListNode<T> root = madeTreeNode(1, size,ddl.getFirst());
+
+
+        System.out.println("done");
     }
 }

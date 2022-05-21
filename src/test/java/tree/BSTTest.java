@@ -1,5 +1,7 @@
 package tree;
 
+import LinkedList.DoubleLinkedList;
+import LinkedList.ListNode;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -44,5 +46,22 @@ class BSTTest {
 
         System.out.println("ss");
 
+    }
+
+    @Test
+    void convertToBstFromDDL() {
+
+        DoubleLinkedList<Integer> ddl = new DoubleLinkedList<>();
+        ddl.addNode(1,0);
+        ddl.addNode(2, 1);
+        ddl.addNode(3, 2);
+        ddl.addNode(4, 3);
+        ddl.addNode(5, 4);
+        ddl.addNode(6, 5);
+        ddl.addNode(7, 6);
+        ddl.addNode(8, 7);
+        ddl.addNode(9, 8);
+        BST<Integer> bst = new BST<>();
+        bst.convertToBstFromDDL(ddl);
     }
 }
