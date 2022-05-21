@@ -6,7 +6,9 @@ import stack.ListStack;
 import stack.Stack;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 
 public class BST <T extends Comparable<T>>{
 
@@ -267,25 +269,77 @@ public class BST <T extends Comparable<T>>{
 
     }
 
-    public BinaryTreeNode<T> madeBstFromSortedArrayBottomUp(LinkedList<T> list)
+    /**
+     * 自底向上不会写
+     */
+//    public BinaryTreeNode<T> madeBstFromSortedArrayBottomUp(LinkedList<T> list)
+//    {
+//        int start = 0;
+//        int end = list.size()-1;
+//
+//        BinaryTreeNode<T> root =  getMiddleBottomUp(start, end, list);
+//
+//        return root;
+//    }
+//
+//    private BinaryTreeNode<T> getMiddleBottomUp(int start, int end, LinkedList<T> list) {
+//
+//        if(start > end) return null;
+//        int mid = (end- start)/2;
+//        BinaryTreeNode<T> left = getMiddleBottomUp(start, start + mid-1 , list);
+//
+//
+//        return null
+//    }
+    /**
+     * 6-61
+     */
+    public FloorCeil<T> getFloorCeil(T key)
     {
-        int start = 0;
-        int end = list.size()-1;
 
-        BinaryTreeNode<T> root =  getMiddleBottomUp(start, end, list);
-
-        return root;
+        FloorCeil<T> floorCeil= new FloorCeil<>();
+        getFloorCeil(key, floorCeil, this.root);
+        return floorCeil;
     }
 
-    private BinaryTreeNode<T> getMiddleBottomUp(int start, int end, LinkedList<T> list) {
+    private FloorCeil<T> getFloorCeil(T key, FloorCeil<T> floorCeil, BinaryTreeNode<T> root){
 
-        if(start > end) return null;
-        int mid = (end- start)/2;
-        BinaryTreeNode<T> left = getMiddleBottomUp(start, start + mid-1 , list);
+        if(root.getValue().compareTo(key) == 0)
+        {
+            floorCeil.floor = key ;
+            floorCeil.ceil = key;
+            return floorCeil;
+        }
+        else if(root.getValue().compareTo(key) >0)
+        {
+            floorCeil.ceil = root.getValue();
+            // 找到了最小
+            if(root.getLeft() == null && root.getRight() == null){
+                floorCeil.floor= root.getValue();
+            }
+            else if(root.getRight() == null && root.getLeft() !=null)
+            {
+                floorCeil = getFloorCeil(key, floorCeil, root.getLeft());
+            }
+            else if(root.getRight() != null && root.getLeft() ==null )
+            {
 
+            }
 
-
+            return floorCeil;
+        }
+        else
+        {
+            floorCeil.floor = root.getValue();
+            if(root.getRight() == null)
+            {
+                floorCeil.ceil = null
+            }
+            else
+            {
+                floorCeil = getFloorCeil(key, floorCeil , root.getRight());
+            }
+            return floorCeil;
+        }
     }
-
-
 }
