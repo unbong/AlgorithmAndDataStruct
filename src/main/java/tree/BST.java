@@ -5,6 +5,9 @@ import LinkedList.ListNode;
 import stack.ListStack;
 import stack.Stack;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 public class BST <T extends Comparable<T>>{
 
     private BinaryTreeNode<T> root = null;
@@ -177,16 +180,23 @@ public class BST <T extends Comparable<T>>{
     }
 
 
+    /**
+     * 6-56 思路没问题，因为双链表实现有问题，无法得到正确答案
+     * @param start
+     * @param end
+     * @param first
+     * @return
+     */
     private ListNode<T> madeTreeNode(int start , int end, ListNode<T> first)
     {
         if(start > end) return null;
-        int mid = (end-start+1)/2 +1;
+        int mid = (end-start)/2;
         int index =start;
 
         ListNode<T> root =  getMiddle( mid, first);
 
         ListNode<T> left = madeTreeNode(start , start +mid-1, first);
-        ListNode<T> right = madeTreeNode(start + mid+1 , end, root);
+        ListNode<T> right = madeTreeNode(start + mid+1 , end, root.getNext());
 
 
         root.setNext(right);
@@ -195,22 +205,27 @@ public class BST <T extends Comparable<T>>{
         return root;
 
     }
-
+    /**
+     * 6-56 思路没问题，因为双链表实现有问题，无法得到正确答案
+      * @param first
+     * @return
+     */
     private ListNode<T> getMiddle(int mid, ListNode<T> first) {
 
-        int j = 1;
+        int j = 0;
         ListNode<T> node = first;
-        while(true)
+        for(; j< mid; j++);
         {
-            if(j == mid )
-            {
-                return node;
-            }
             node = node.getNext();
-            j ++;
         }
+        return  node;
     }
+    /**
+     * 6-56 思路没问题，因为双链表实现有问题，无法得到正确答案
 
+
+     * @return
+     */
     public void  convertToBstFromDDL(DoubleLinkedList<T> ddl)
     {
         int size = ddl.size();
@@ -219,4 +234,58 @@ public class BST <T extends Comparable<T>>{
 
         System.out.println("done");
     }
+
+
+    /**
+     * 6-59 自顶向下 方式生成BST
+     * @param arrayList
+     * @return
+     */
+    public BinaryTreeNode<T> madeBstFromSortedArray(ArrayList<T> arrayList)
+    {
+        int start = 0;
+        int end = arrayList.size()-1;
+
+        BinaryTreeNode<T> root =  getMiddle(start, end, arrayList);
+
+        return root;
+    }
+
+    private BinaryTreeNode<T> getMiddle(int start , int end , ArrayList<T> arrayList)
+    {
+        if(start>end) return null;
+        int mid = (end-start) /2;
+
+        T val = arrayList.get(start+mid);
+
+        BinaryTreeNode<T> root = new BinaryTreeNode<>(val);
+        BinaryTreeNode<T> left = getMiddle(start, start + mid-1, arrayList);
+        BinaryTreeNode<T> right = getMiddle(start + mid +1 , end, arrayList);
+        root.setLeft(left);
+        root.setRight(right);
+        return root;
+
+    }
+
+    public BinaryTreeNode<T> madeBstFromSortedArrayBottomUp(LinkedList<T> list)
+    {
+        int start = 0;
+        int end = list.size()-1;
+
+        BinaryTreeNode<T> root =  getMiddleBottomUp(start, end, list);
+
+        return root;
+    }
+
+    private BinaryTreeNode<T> getMiddleBottomUp(int start, int end, LinkedList<T> list) {
+
+        if(start > end) return null;
+        int mid = (end- start)/2;
+        BinaryTreeNode<T> left = getMiddleBottomUp(start, start + mid-1 , list);
+
+
+
+    }
+
+
 }

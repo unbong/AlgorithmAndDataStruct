@@ -4,6 +4,8 @@ import LinkedList.DoubleLinkedList;
 import LinkedList.ListNode;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BSTTest {
@@ -63,5 +65,19 @@ class BSTTest {
         ddl.addNode(9, 8);
         BST<Integer> bst = new BST<>();
         bst.convertToBstFromDDL(ddl);
+    }
+
+    @Test
+    void madeBstFromSortedArray() {
+
+        ArrayList<Integer> s = new ArrayList<>();
+        for (int i = 1; i <=10 ; i++) {
+            s.add(i);
+        }
+
+        BST<Integer> tree = new BST<>();
+        BinaryTreeNode<Integer> newTree=  tree.madeBstFromSortedArray(s);
+
+        System.out.println("done");
     }
 }
