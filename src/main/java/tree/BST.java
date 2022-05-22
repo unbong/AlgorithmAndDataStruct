@@ -292,7 +292,7 @@ public class BST <T extends Comparable<T>>{
 //        return null
 //    }
     /**
-     * 6-61
+     * 6-61 找到传入值再树中的范围
      */
     public FloorCeil<T> getFloorCeil(T key)
     {
@@ -312,32 +312,31 @@ public class BST <T extends Comparable<T>>{
         }
         else if(root.getValue().compareTo(key) >0)
         {
+
+            // 更新最大值
             floorCeil.ceil = root.getValue();
-            // 找到了最小
+            // 如果没有更小的值，则将最小值设为null
             if(root.getLeft() == null && root.getRight() == null){
-                floorCeil.floor= root.getValue();
+                floorCeil.floor= null;
             }
-            else if(root.getRight() == null && root.getLeft() !=null)
+            // 如果有 更小的值 则更新最小值
+            else if( root.getLeft() !=null)
             {
                 floorCeil = getFloorCeil(key, floorCeil, root.getLeft());
             }
-            else if(root.getRight() != null && root.getLeft() ==null )
-            {
-
-            }
-
             return floorCeil;
         }
         else
         {
             floorCeil.floor = root.getValue();
-            if(root.getRight() == null)
+            if(root.getRight() == null && root.getLeft() == null)
             {
-                floorCeil.ceil = null
+                floorCeil.ceil = null;
             }
-            else
+            // 如果有 更接近的值 则更新最大值
+            else if(root.getRight() != null )
             {
-                floorCeil = getFloorCeil(key, floorCeil , root.getRight());
+                floorCeil = getFloorCeil(key, floorCeil, root.getRight());
             }
             return floorCeil;
         }

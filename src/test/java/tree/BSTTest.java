@@ -2,6 +2,7 @@ package tree;
 
 import LinkedList.DoubleLinkedList;
 import LinkedList.ListNode;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -79,5 +80,28 @@ class BSTTest {
         BinaryTreeNode<Integer> newTree=  tree.madeBstFromSortedArray(s);
 
         System.out.println("done");
+    }
+
+    @Test
+    void getFloorCeil() {
+
+        BST bst = new BST();
+        bst.addNode(1);
+        bst.addNode(2);
+
+        bst.addNode(8);
+
+        bst.addNode(10);
+
+        bst.addNode(12);
+        bst.addNode(19);
+
+        FloorCeil<Integer> fc1 =  bst.getFloorCeil(5);
+        FloorCeil<Integer> exp1 = new FloorCeil<>();
+        exp1.floor= null;
+        exp1.ceil = 1;
+
+        System.out.println(exp1.toString());
+
     }
 }
