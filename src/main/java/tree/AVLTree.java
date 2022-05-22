@@ -62,59 +62,66 @@ public class AVLTree<T extends Comparable> {
         return singleRotateLeft(root);
     }
 
+
+    public void print()
+    {
+        print(this.root, 0, true);
+        System.out.println("test");
+    }
+
+    private void print(AVLTreeNode<T> root, int level, boolean isHaveLeft )
+    {
+
+
+        if(root == null)
+        {
+            return;
+        }
+        if(root.getLeft() == null)
+        {
+            isHaveLeft = false;
+        }else
+        {
+            isHaveLeft = true;
+        }
+        if(level ==0)
+        {
+            System.out.println(root.getValue());
+        }
+        else
+        {
+            if(isHaveLeft)
+            {
+                System.out.println("├──");
+            }
+            else
+            {
+                System.out.println("└──");
+            }
+            for (int i = 0; i < level; i++) {
+                System.out.print("  ");
+            }
+            System.out.print(root.getValue());
+
+        }
+
+        level ++;
+        print(root.getLeft(), level, isHaveLeft);
+        print(root.getRight(), level, !isHaveLeft);
+    }
+
+
     /**
      *
      * @param val
      */
     public void addNode(T val)
     {
-        addNode(val, root, root);
+        this.root =  addNode(val, root, root);
 
     }
 
-
-    public void print()
-    {
-        if(this.root == null)
-        {
-            System.out.println("empty tree");
-            return;
-        }
-
-        Queue<AVLTreeNode<T>> queue = new ArrayDeque<>();
-        AVLTreeNode<T> levelEndPoint = new AVLTreeNode<>(this.root.getValue());
-        queue.add(this.root);
-        queue.add(levelEndPoint);
-        while(true)
-        {
-            AVLTreeNode<T> node = queue.poll();
-            if(queue.isEmpty() )
-            {
-//                if(node == levelEndPoint)
-//                {
-//
-//                }
-                return ;
-            }
-            else {
-
-
-            }
-
-        }
-
-    }
-
-    private void print(AVLTreeNode<T> root, int level)
-    {
-
-
-
-        level ++;
-        print();
-    }
-
-    private void addNode(T val, AVLTreeNode<T> root, AVLTreeNode<T> parent)
+    private AVLTreeNode<T> addNode(T val, AVLTreeNode<T> root, AVLTreeNode<T> parent)
     {
         if(root == null)
         {
@@ -173,7 +180,9 @@ public class AVLTree<T extends Comparable> {
             }
         }
         // 更新高度
-        root.setHeight(Math.max(root.getRight().getHeight() , root.getLeft().getHeight()) +1);
+        root.updateHeight();
+
+        return root;
     }
 
     public void remove(T val)
