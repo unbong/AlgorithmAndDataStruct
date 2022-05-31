@@ -29,24 +29,9 @@ public class AVLTreeNode<T> {
     }
 
     public int getHeight() {
-        int h = 0;
-        if(left == null && right == null)
-        {
-            h = 0;
-        }
-        else if(left == null && right != null)
-        {
-            h =  right.getHeight() +1;
-        }
-        else if(left != null && right == null)
-        {
-            h = left.getHeight()+1;
-        }
-        else {
-            h = Math.max(right.getHeight(), left.getHeight()) +1;
-        }
+        updateHeight();
 
-        return h;
+        return height;
     }
 
     public void updateHeight()
