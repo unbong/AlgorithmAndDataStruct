@@ -28,6 +28,8 @@ public class ArrayStack<T> implements Stack<T>{
     {
         array = new Node[size];
         capacity = size;
+
+
     }
 
     /**
