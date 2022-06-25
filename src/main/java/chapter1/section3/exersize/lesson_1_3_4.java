@@ -1,4 +1,4 @@
-package chapter1.section3.lesson;
+package chapter1.section3.exersize;
 
 import chapter1.section3.Stack;
 

@@ -1,4 +1,4 @@
-package chapter1.section3.lesson;
+package chapter1.section3.exersize;
 
 import chapter1.section3.Stack;
 
@@ -8,6 +8,7 @@ public class Exersize_1_3 {
 
     /**
      * 10 将中值表达式转换为后置表达式
+     *  这个不对 没思路
      * @param exp
      * @return
      */
@@ -44,63 +45,60 @@ public class Exersize_1_3 {
             {
                 operand.push(""+c);
             }
-
         }
         return postFix;
     }
 
-
+    /**
+     * 1.3.11
+     *  利用后置表达式进行计算
+     * @param exp
+     * @return
+     */
     public int evalueate(String exp)
     {
-
         Stack<String> operator = new Stack<>();
         Stack<Integer> operand = new Stack<>();
-        int res;
+        int res = Integer.MIN_VALUE;
         for (int i = 0; i < exp.length(); i++){
 
-            String c = exp.(i);
+            String c = exp.substring(i, i+1);
 
-            if(c.equals("("))
+            if(c.equals("+" ))
             {
-                // do nothing
-            }
-            else if(c.equals("+" )||
-                    c.equals("-" )||
-                    c.equals("/")||
-                    c.equals("*") )
-            {
-                operator.push(c);
-            }
-            else if(c.equals(")"))
-            {
-
                 int num1 = operand.pop();
                 int num2 = operand.pop();
-                String oper = operator.pop();
-                if(c.equals("+" ))
-                {
-                    res = num1+ num2;
-                }
-                else if(c.equals("-"))
-                {
-                    res = num2-num1;
-                }
-                else if(c.equals("*"))
-                {
-                    res = num2*num1;
-                }
-                else if(c.equals("/"))
-                {
-                    res = num2/num1;
-                }
-
+                res = num1+ num2;
+                operand.push(res);
+            }
+            else if(c.equals("-"))
+            {
+                int num1 = operand.pop();
+                int num2 = operand.pop();
+                res = num2-num1;
+                operand.push(res);
+            }
+            else if(c.equals("*"))
+            {
+                int num1 = operand.pop();
+                int num2 = operand.pop();
+                res = num2*num1;
+                operand.push(res);
+            }
+            else if(c.equals("/"))
+            {
+                int num1 = operand.pop();
+                int num2 = operand.pop();
+                res = num2/num1;
+                operand.push(res);
             }
             else
             {
-                operand.push();
+                operand.push(Integer.valueOf(c));
             }
 
         }
+        return res;
     }
 
     public static void main(String[] args){
