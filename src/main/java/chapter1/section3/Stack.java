@@ -12,6 +12,18 @@ public class Stack <T> implements Iterable<T>{
     private int size = 0;
     private Node first = null;
 
+    public Stack(Stack<T> q)
+    {
+        for (T item :
+                q) {
+            push(item);
+        }
+    }
+
+    public Stack()
+    {
+
+    }
     public T pop()
     {
         if(isEmpty())
@@ -71,5 +83,25 @@ public class Stack <T> implements Iterable<T>{
             current = current.next;
             return (T) res.item;
         }
+    }
+
+    /**
+     * reverse link
+     * @param x
+     * @return
+     */
+    public Node reverse(Node x)
+    {
+        Node first = x;
+        Node reverse = null;
+        while(first != null)
+        {
+            Node second = first.next;
+            first.next = reverse;
+            reverse = first;
+            first = second;
+        }
+
+        return reverse;
     }
 }

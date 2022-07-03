@@ -6,7 +6,7 @@ public class Queue <T> implements Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new QueueIterator();
     }
 
     private class Node {
@@ -14,6 +14,19 @@ public class Queue <T> implements Iterable<T> {
         Node next;
     }
 
+
+    public Queue()
+    {
+
+    }
+
+    public Queue(Queue<T> q)
+    {
+        for (T item :
+                q) {
+            enqueue(item);
+        }
+    }
     private Node first;
     private Node last;
     private int size=0;
@@ -57,7 +70,7 @@ public class Queue <T> implements Iterable<T> {
         // todo
         @Override
         public T next() {
-            T res = current.next.item;
+            T res = current.item;
             current = current.next;
             return res;
         }
