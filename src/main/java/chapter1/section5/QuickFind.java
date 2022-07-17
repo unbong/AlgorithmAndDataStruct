@@ -60,6 +60,5 @@ public class QuickFind extends UF {
         String time = watch.elapsedTime();
 
         System.out.println("debug : time "+ time);
-
     }
 }

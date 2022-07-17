@@ -1,5 +1,12 @@
 package chapter2.section1.exercise;
 
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdOut;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * 出列排序
  */
@@ -13,7 +20,24 @@ public class Exercize_2_1_14 {
 
     public void sort()
     {
-        
+        for (int i = 0; i < a.length; ) {
+
+            if(less(a[0], a[1]))
+            {
+                exch(0, 1);
+
+            }else{
+
+            }
+
+
+
+            Comparable tmp = a[0];
+            for (int j = 0; j < a.length-1; j++) {
+                a[j] = a[j+1];
+            }
+            a[a.length-1] = tmp;
+        }
     }
     public boolean less(Comparable v , Comparable w)
     {
@@ -25,5 +49,32 @@ public class Exercize_2_1_14 {
         Comparable tmp = a[j];
         a[j] = a[i];
         a[i] = tmp;
+    }
+
+    public void show()
+    {
+        for (int i = 0; i < a.length; i++) {
+            StdOut.print(" "+ a[i]);
+        }
+        StdOut.println("");
+    }
+
+    public static void main(String[] args) {
+
+        List<Integer> list = new ArrayList<>();
+        Integer a[] = new Integer[13];
+
+        for (int i = 1; i < 14; i++) {
+            list.add(i);
+        }
+        Collections.shuffle(list);
+
+        for (int i = 0; i < 13; i++) {
+            a[i] = list.get(i);
+        }
+        Exercize_2_1_14 exe = new Exercize_2_1_14(a);
+        exe.show();
+        exe.sort();
+        exe.show();
     }
 }
