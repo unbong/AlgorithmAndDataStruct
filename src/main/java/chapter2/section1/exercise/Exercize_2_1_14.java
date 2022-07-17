@@ -20,9 +20,10 @@ public class Exercize_2_1_14 {
 
     public void sort()
     {
+        Comparable mark;
         for (int i = 0; i < a.length; ) {
 
-            if(less(a[0], a[1]))
+            if(less(a[1], a[0]))
             {
                 exch(0, 1);
 
