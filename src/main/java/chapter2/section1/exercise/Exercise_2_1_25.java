@@ -1,9 +1,8 @@
 package chapter2.section1.exercise;
 
-import chapter2.section1.Insertion;
-import chapter2.section1.SortCompare;
+import chapter2.Insertion;
+import chapter2.SortCompare;
 import edu.princeton.cs.algs4.StdOut;
-import utils.IntRandom;
 
 public class Exercise_2_1_25 {
 

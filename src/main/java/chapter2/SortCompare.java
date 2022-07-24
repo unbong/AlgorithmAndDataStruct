@@ -1,8 +1,7 @@
-package chapter2.section1;
+package chapter2;
 
 import chapter2.section1.exercise.Exercise_2_1_24;
 import chapter2.section1.exercise.Exercise_2_1_25;
-import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdRandom;
 import utils.StopWatch;
 
