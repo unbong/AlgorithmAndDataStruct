@@ -20,24 +20,50 @@ public class Exercize_2_1_14 {
 
     public void sort()
     {
-        Comparable mark;
-        for (int i = 0; i < a.length; ) {
+        boolean isFirst = true;
+        Comparable mark = a[0];
+        boolean isChanged = false;
+        while (true){
+            show();
 
-            if(less(a[1], a[0]))
+            if(mark.compareTo(a[1]) ==0)
             {
-                exch(0, 1);
+                isFirst = true;
+                if(isChanged)
+                {
+                    isChanged = false;
+                }
+                else {
+                    Comparable tmp = a[0];
+                    for (int j = 0; j < a.length-1; j++) {
+                        a[j] = a[j+1];
+                    }
+                    a[a.length-1] = tmp;
+                    break;
+                }
+            }else {
+                //
+                if(less(a[1], a[0]))
+                {
+                    exch(0, 1);
+                    if (isFirst) mark = a[0];
+                    isChanged = true;
+                }else{
+                    if (isFirst) mark = a[0];
+                }
 
-            }else{
-
+                isFirst = false;
             }
-
-
 
             Comparable tmp = a[0];
             for (int j = 0; j < a.length-1; j++) {
                 a[j] = a[j+1];
             }
             a[a.length-1] = tmp;
+
+
+
+
         }
     }
     public boolean less(Comparable v , Comparable w)
@@ -63,14 +89,14 @@ public class Exercize_2_1_14 {
     public static void main(String[] args) {
 
         List<Integer> list = new ArrayList<>();
-        Integer a[] = new Integer[13];
+        Integer a[] = new Integer[5];
 
-        for (int i = 1; i < 14; i++) {
-            list.add(i);
+        for (int i = 0; i < 5; i++) {
+            list.add(i+1);
         }
         Collections.shuffle(list);
 
-        for (int i = 0; i < 13; i++) {
+        for (int i = 0; i < 5; i++) {
             a[i] = list.get(i);
         }
         Exercize_2_1_14 exe = new Exercize_2_1_14(a);

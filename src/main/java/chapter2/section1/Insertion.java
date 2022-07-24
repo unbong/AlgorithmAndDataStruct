@@ -1,6 +1,7 @@
 package chapter2.section1;
 
 import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Random;
@@ -38,6 +39,15 @@ public class Insertion {
             if(less(a[i], a[i-1]) ) return false;
         }
         return  true;
+    }
+
+    private static void  draw(Comparable[]  a, int i, int j)
+    {
+        StdDraw.clear();
+
+        StdDraw.setPenColor(StdDraw.RED);
+
+        
     }
 
     public static void show(Comparable a[]){

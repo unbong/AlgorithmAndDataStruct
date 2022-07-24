@@ -1,5 +1,7 @@
 package chapter2.section1;
 
+import chapter2.section1.exercise.Exercise_2_1_24;
+import chapter2.section1.exercise.Exercise_2_1_25;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdRandom;
 import utils.StopWatch;
@@ -13,6 +15,8 @@ public class SortCompare {
         if (alg == Insertion.class) Insertion.sort(a);
         if (alg == Selection.class) Selection.sort(a);
         if (alg == Shell.class) Shell.sort(a);
+        if (alg == Exercise_2_1_24.class) Exercise_2_1_24.sort(a);
+        if (alg == Exercise_2_1_25.class) Exercise_2_1_25.sort(a);
 //        if (alg == Insertion.class) Insertion.sort(a);
 //        if (alg == Insertion.class) Insertion.sort(a);
 
