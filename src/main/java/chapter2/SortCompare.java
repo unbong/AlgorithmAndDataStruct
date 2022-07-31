@@ -16,6 +16,9 @@ public class SortCompare {
         if (alg == Shell.class) Shell.sort(a);
         if (alg == Exercise_2_1_24.class) Exercise_2_1_24.sort(a);
         if (alg == Exercise_2_1_25.class) Exercise_2_1_25.sort(a);
+        if (alg == Merge.class) Merge.sort(a);
+        if (alg == MergeBU.class) MergeBU.sort(a);
+
 //        if (alg == Insertion.class) Insertion.sort(a);
 //        if (alg == Insertion.class) Insertion.sort(a);
 

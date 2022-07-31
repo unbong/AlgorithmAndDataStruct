@@ -1,6 +1,7 @@
 package chapter2.section2.exercise;
 
 import edu.princeton.cs.algs4.StdOut;
+import utils.IntRandom;
 
 public class Exercise_2_2_6 {
 
@@ -63,12 +64,13 @@ public class Exercise_2_2_6 {
     }
 
     public static void main(String[] args) {
-        Integer a[]={5,3, 2,1, 4};
+        for (int i = 1; i <= 512; i++) {
+            count = 0;
+            Integer b[] = IntRandom.getIntRandom(i);
+            sort(b);
 
-        sort(a);
-
-        show(a);
-        StdOut.println("");
-        StdOut.println(count);
+            StdOut.print(""+i+": ");
+            StdOut.println(count);
+        }
     }
 }
