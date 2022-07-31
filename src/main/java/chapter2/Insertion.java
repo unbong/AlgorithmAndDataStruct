@@ -10,6 +10,15 @@ import java.util.Random;
  */
 public class Insertion {
 
+    public static void sort(Comparable a[], int lo, int hi)
+    {
+        for (int i = lo+1; i <= hi; i++) {
+            for (int j = i; j>lo && less(a[j], a[j-1]) ; j--) {
+                exch(a, i , j);
+            }
+        }
+    }
+
     public static void sort(Comparable a[])
     {
         for (int i = 1; i < a.length; i++) {

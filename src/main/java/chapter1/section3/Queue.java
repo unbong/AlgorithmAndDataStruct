@@ -40,6 +40,11 @@ public class Queue <T> implements Iterable<T> {
         return oldFirst.item;
     }
 
+    public T top()
+    {
+        return first.item;
+    }
+
     public void enqueue(T val)
     {
 
