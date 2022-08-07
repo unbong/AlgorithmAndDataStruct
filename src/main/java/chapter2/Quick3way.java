@@ -1,6 +1,5 @@
 package chapter2;
 
-import com.sun.xml.internal.ws.api.message.MessageWritable;
 import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdOut;
 import utils.ArrayGenerator;

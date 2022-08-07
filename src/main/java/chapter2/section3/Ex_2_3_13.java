@@ -1,5 +1,6 @@
 package chapter2.section3;
 
+import chapter2.Merge;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
@@ -16,7 +17,7 @@ public class Ex_2_3_13 {
     public static void sort(Comparable a[])
     {
         int sc = 0;
-        StdRandom.shuffle(a);
+        //StdRandom.shuffle(a);
         sort(a, 0, a.length-1, sc);
     }
 
@@ -96,21 +97,26 @@ public class Ex_2_3_13 {
 
         int N = 100;
 
-        Integer a[] = new Integer[N];
+//        Integer a[] = new Integer[N];
+//
+//        for (int i = 0; i < 20; i++)
+//        {
+//            for (int k = 0; k < N; k++) {
+//                a[k] = N-k;
+//            }
+//            sort(a);
+//            StdOut.println(String.format("%d, C_n %d, stackCount %d, maxSc %d", N, count, stackCount, maxStack));
+//
+//            count = 0;
+//            stackCount = 0;
+//            maxStack = 0;
+//        }
+        //5 9 6 8 7 2 4 1 4
+        Integer a[] ={5,10,9,7,6,8,2,1,4,3};
 
-        for (int i = 0; i < 20; i++) {
-            for (int k = 0; k < N; k++) {
-                a[k] = N-k;
-            }
-            sort(a);
-            StdOut.println(String.format("%d, C_n %d, stackCount %d, maxSc %d", N, count, stackCount, maxStack));
-
-            count = 0;
-            stackCount = 0;
-            maxStack = 0;
-        }
-
-
+        sort(a);
+        StdOut.println(String.format("%d, C_n %d, stackCount %d, maxSc %d", N, count, stackCount, maxStack));
+        Merge.show(a);
 
     }
 }
