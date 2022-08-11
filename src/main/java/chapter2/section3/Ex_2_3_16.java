@@ -1,7 +1,6 @@
 package chapter2.section3;
 
 import chapter2.Merge;
-import com.sun.org.apache.bcel.internal.generic.MethodGen;
 import edu.princeton.cs.algs4.StdOut;
 
 /**

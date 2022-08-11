@@ -1,5 +1,6 @@
 package chapter2.section3;
 
+import utils.ArrayGenerator;
 import utils.ArrayUtils;
 import utils.IntRandom;
 
@@ -23,8 +24,8 @@ public class Ex22_Fast3WayQuick {
     private static void sort(Comparable a[], int lo, int hi)
     {
         if(lo>=hi) return;
-        int i = lo+1;
-        int j = hi;
+        int i = lo;
+        int j = hi+1;
         int lt = lo;
         int gt = hi;
         int p = lo;
@@ -32,24 +33,61 @@ public class Ex22_Fast3WayQuick {
 
         Comparable v = a[lo];
 
-        while(i<=gt)
+        while(true)
         {
-            if(v.compareTo(a[i])>0 ){ ArrayUtils.exch(a, lt++, i++); }
-            else if (v.compareTo(a[i]) < 0 ) { ArrayUtils.exch(a, i, gt--); }
-            else { i++; }
+            while(ArrayUtils.less(a[++i], v)){
+
+                if(a[i].compareTo(v) ==0)
+                {
+                    ArrayUtils.exch(a, i, p++);
+                }
+                if(i == q) break;
+            }
+
+            while(ArrayUtils.less(v,a[--j]))
+            {
+                if(a[j].compareTo(v) == 0)
+                {
+                    ArrayUtils.exch(a,j , q-- );
+                }
+                if(j == p) break;
+            }
+
+            if (i>=j)
+            {
+                break;
+            }
+            //ArrayUtils.exch(a, i, j);
         }
 
-        sort(a, lo, lt-1);
-        sort(a, lt+1, hi);
+        int tmpP = p;
+        int tmpQ =q;
+        int tmpLo = lo;
+        int tmpHi = hi;
+        while(tmpP<=j)
+        {
+            ArrayUtils.exch(a,tmpP++, tmpLo++);
+        }
+
+        while(tmpQ > j)
+        {
+            ArrayUtils.exch(a,tmpQ--,tmpHi--);
+        }
+
+        sort(a, lo, p-1);
+        sort(a, q+1, hi);
 
     }
 
     public static void main(String[] args) {
 
-        Integer a[] = IntRandom.getIntRandom(9);
+        Comparable[] a = ArrayGenerator.generateRandomArrayWith3Values(21);
+//        Integer a[] = IntRandom.getIntRandom(9);
         //Integer a[] =  {9, 1, 6, 7, 8, 3, 4, 2, 5};
         ArrayUtils.show(a);
         sort(a);
         ArrayUtils.show(a);
+
+
     }
 }
