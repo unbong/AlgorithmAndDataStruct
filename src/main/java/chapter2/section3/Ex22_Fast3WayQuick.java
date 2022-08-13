@@ -36,52 +36,52 @@ public class Ex22_Fast3WayQuick {
         while(true)
         {
             while(ArrayUtils.less(a[++i], v)){
-
-                if(a[i].compareTo(v) ==0)
-                {
-                    ArrayUtils.exch(a, i, p++);
-                }
                 if(i == q) break;
             }
-
+            if(a[i].compareTo(v) ==0)
+            {
+                ArrayUtils.exch(a, i, p++);
+            }
             while(ArrayUtils.less(v,a[--j]))
             {
-                if(a[j].compareTo(v) == 0)
-                {
-                    ArrayUtils.exch(a,j , q-- );
-                }
                 if(j == p) break;
             }
-
+            if(a[j].compareTo(v) == 0)
+            {
+                ArrayUtils.exch(a,j , q-- );
+            }
             if (i>=j)
             {
                 break;
             }
-            //ArrayUtils.exch(a, i, j);
+            ArrayUtils.show(a);
+            ArrayUtils.exch(a, i, j);
         }
 
         int tmpP = p;
         int tmpQ =q;
-        int tmpLo = lo;
-        int tmpHi = hi;
-        while(tmpP<=j)
+        int tmpJ = j;
+        int tmpJ2 = j;
+        while(tmpP>=0)
         {
-            ArrayUtils.exch(a,tmpP++, tmpLo++);
+            ArrayUtils.exch(a,tmpP--, tmpJ--);
         }
 
-        while(tmpQ > j)
+        while(tmpQ <=hi)
         {
-            ArrayUtils.exch(a,tmpQ--,tmpHi--);
+            ArrayUtils.exch(a,tmpQ++,tmpJ2++);
         }
 
         sort(a, lo, p-1);
         sort(a, q+1, hi);
 
+        //todo 没能实现
+
     }
 
     public static void main(String[] args) {
 
-        Comparable[] a = ArrayGenerator.generateRandomArrayWith3Values(21);
+        Comparable[] a = ArrayGenerator.generateRandomArrayWith3Values(9);
 //        Integer a[] = IntRandom.getIntRandom(9);
         //Integer a[] =  {9, 1, 6, 7, 8, 3, 4, 2, 5};
         ArrayUtils.show(a);

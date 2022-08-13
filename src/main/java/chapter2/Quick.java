@@ -14,10 +14,12 @@ public class Quick {
     private static void sort(Comparable a[], int lo, int hi){
 
         // 改进1 对于小数组 使用插入排序
-        if(lo + M>=hi) {
-            Insertion.sort(a, lo, hi);
-            return ;
-        }
+//        if(lo + M>=hi) {
+//            Insertion.sort(a, lo, hi);
+//            return ;
+//        }
+
+        if(lo>=hi) return;
         int j = partition(a, lo,hi);
 
         sort(a, lo, j-1);

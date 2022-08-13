@@ -2,10 +2,7 @@ package chapter2;
 
 import chapter2.section1.exercise.Exercise_2_1_24;
 import chapter2.section1.exercise.Exercise_2_1_25;
-import chapter2.section3.Ex20_QuickNonRecursive;
-import chapter2.section3.Ex_17_sentinel;
-import chapter2.section3.Ex_19_MedianOf5Partitioning;
-import chapter2.section3.Ex_2_3_5;
+import chapter2.section3.*;
 import edu.princeton.cs.algs4.StdRandom;
 import utils.StopWatch;
 
@@ -27,7 +24,7 @@ public class SortCompare {
         if (alg == Ex_17_sentinel.class) Ex_17_sentinel.sort(a);
         if (alg == Ex_19_MedianOf5Partitioning.class) Ex_19_MedianOf5Partitioning.sort(a);
         if (alg == Ex20_QuickNonRecursive.class) Ex20_QuickNonRecursive.sort(a);
-
+        if (alg == Ex25_Quick_Insertion.class) Ex25_Quick_Insertion.sort(a);
 //        if (alg == Insertion.class) Insertion.sort(a);
 //        if (alg == Insertion.class) Insertion.sort(a);
 
