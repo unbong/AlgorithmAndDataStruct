@@ -1,12 +1,16 @@
 package chapter2;
 
+/**
+ * 2。4 索引优先队列
+ */
+
 public class IndexPQ<Key extends Comparable<Key>> {
 
     enum Orientation{
         MIN, MAX
     }
-    int pq[];
-    int qp[];
+    int pq[]; // 存储索引的数组
+    int qp[]; // 索引的方向索引，存储索引值在PQ的索引
     Key[] a;
     Orientation _orientaition;
     int _size =0;
