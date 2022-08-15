@@ -1,16 +1,15 @@
 package chapter2.section4;
 
-import chapter2.PriorityQueue;
 import edu.princeton.cs.algs4.StdOut;
 
-public class Ex6<Key extends Comparable<Key>> {
+public class Ex13<Key extends Comparable<Key>> {
 
 
     private Key a[] = null;
     private int _size = 0;
     private int _maxSize=0;
 
-    public Ex6(int maxSize)
+    public Ex13(int maxSize)
     {
         a =(Key[]) new Comparable[maxSize+1];
         _maxSize = maxSize;
@@ -37,11 +36,10 @@ public class Ex6<Key extends Comparable<Key>> {
         while(2*k <= _size)
         {
             int c = 2*k;
-            if(c < _size)
-            {
-                if(less(a[c], a[c+1] )) c++;
-            }
-            if(less(a[k],a[c])) exch(k,c);
+
+            if( a[c].compareTo(a[_size]) != 0 && less(a[c], a[c+1] )) c++;
+
+            if(less(k,c)) exch(k,c);
             else break;
             k = 2*k;
         }
@@ -73,13 +71,19 @@ public class Ex6<Key extends Comparable<Key>> {
 
     public static void main(String[] args) {
 
-        Ex6<Character> ex6 = new Ex6<>(20);
+        Ex13<Character> ex6 = new Ex13<>(20);
         ex6.insert('P');
         ex6.insert('R');
         ex6.insert('I');
         ex6.insert('O');
+        ex6.insert('R');
+        ex6.insert('A');
+        ex6.insert('Z');
+        ex6.insert('H');
         Character i =ex6.deleteMax();
         StdOut.println(i);
-
+        StdOut.println(ex6.deleteMax());
+        StdOut.println(ex6.deleteMax());
+        StdOut.println(ex6.deleteMax());
     }
 }

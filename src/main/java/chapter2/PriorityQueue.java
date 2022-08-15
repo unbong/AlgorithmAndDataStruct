@@ -13,7 +13,7 @@ public class PriorityQueue<key extends Comparable<key>> {
     private int _size = 0;
     private Orientation _orientation;
 
-    enum Orientation{
+    public enum Orientation{
         MAX,MIN;
     }
     public PriorityQueue(int size , Orientation orientation){

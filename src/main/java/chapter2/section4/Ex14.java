@@ -1,16 +1,18 @@
 package chapter2.section4;
 
-import chapter2.PriorityQueue;
 import edu.princeton.cs.algs4.StdOut;
+import utils.IntRandom;
 
-public class Ex6<Key extends Comparable<Key>> {
+public class Ex14<Key extends Comparable<Key>> {
 
+
+    public int count = 0;
 
     private Key a[] = null;
     private int _size = 0;
     private int _maxSize=0;
 
-    public Ex6(int maxSize)
+    public Ex14(int maxSize)
     {
         a =(Key[]) new Comparable[maxSize+1];
         _maxSize = maxSize;
@@ -18,6 +20,7 @@ public class Ex6<Key extends Comparable<Key>> {
 
     public void insert(Key val)
     {
+        count = 0;
         if (_size > _maxSize) throw new IllegalStateException("pq is full");
 
         a[++_size] = val;
@@ -26,6 +29,7 @@ public class Ex6<Key extends Comparable<Key>> {
 
     public Key deleteMax()
     {
+        count = 0;
         Key res = a[1];
 
         exch(1, _size--);
@@ -66,20 +70,57 @@ public class Ex6<Key extends Comparable<Key>> {
 
     private void exch(int i, int j)
     {
+        count++;
         Key t = a[i];
         a[i] = a[j];
         a[j] = t;
     }
 
     public static void main(String[] args) {
+        int N = 1024;
+        Ex14<Integer> pq = new Ex14<>(N);
 
-        Ex6<Character> ex6 = new Ex6<>(20);
-        ex6.insert('P');
-        ex6.insert('R');
-        ex6.insert('I');
-        ex6.insert('O');
-        Character i =ex6.deleteMax();
-        StdOut.println(i);
+        Integer a[]=IntRandom.getIntRandom(N);
 
+        for (int i = 0; i < a.length; i++) {
+            pq.insert(a[i]);
+        }
+
+        int i = 1;
+
+        StdOut.println(pq.deleteMax());
+        StdOut.println(String.format("No%d coutn: %d ", i++, pq.count) );
+
+        pq.insert(N);
+
+        i++;
+        StdOut.println(pq.deleteMax());
+        StdOut.println(String.format("No%d coutn: %d ", i++, pq.count) );
+
+        i++;
+        StdOut.println(pq.deleteMax());
+        StdOut.println(String.format("No%d coutn: %d ", i++, pq.count) );
+
+
+        pq.insert(N);
+        pq.insert(N-1);
+
+        i++;
+        StdOut.println(pq.deleteMax());
+        StdOut.println(String.format("No%d coutn: %d ", i++, pq.count) );
+
+        i++;
+        StdOut.println(pq.deleteMax());
+        StdOut.println(String.format("No%d coutn: %d ", i++, pq.count) );
+
+        i++;
+        StdOut.println(pq.deleteMax());
+        StdOut.println(String.format("No%d coutn: %d ", i++, pq.count) );
+
+
+    }
+
+    private boolean isEmpty() {
+        return _size == 0;
     }
 }
