@@ -47,7 +47,7 @@ public class Ex14<Key extends Comparable<Key>> {
             }
             if(less(a[k],a[c])) exch(k,c);
             else break;
-            k = 2*k;
+            k = c;
         }
     }
 

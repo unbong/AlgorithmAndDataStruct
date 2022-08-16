@@ -56,7 +56,7 @@ public class Ex15<Key extends Comparable<Key>> {
             if(more(a[i], a[c])){ exch(i,c );}
             else break;
 
-            i = 2*i;
+            i = c;
         }
     }
 

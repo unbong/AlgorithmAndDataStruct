@@ -111,7 +111,7 @@ public class IndexPQ<Key extends Comparable<Key>> {
                     || (_orientaition == Orientation.MIN && more(a[pq[k]], a[pq[c]]))){
                 exch(c,k);
             }
-            k = 2*k;
+            k = c;
         }
     }
 

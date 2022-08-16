@@ -11,20 +11,29 @@ import utils.IntRandom;
 public class PriorityQueue<key extends Comparable<key>> {
     private  key[] a = null;
     private int _size = 0;
+    private int _maxSize = 0;
     private Orientation _orientation;
 
     public enum Orientation{
         MAX,MIN;
     }
     public PriorityQueue(int size , Orientation orientation){
+        _maxSize = size;
         a =(key[]) new Comparable[size+1];
         _orientation = orientation;
 
     }
 
-    public PriorityQueue(key[] a,  Orientation orientation)
-    {
 
+    public PriorityQueue(key[] arr,  Orientation orientation)
+    {
+        _maxSize = a.length;
+        a = arr.clone();
+        _orientation = orientation;
+
+        for (int i = _maxSize/2; i > 0 ; i--) {
+            sink(i);
+        }
     }
 
     private  boolean isFull()
