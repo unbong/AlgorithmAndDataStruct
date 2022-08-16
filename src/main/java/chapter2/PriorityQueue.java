@@ -21,14 +21,17 @@ public class PriorityQueue<key extends Comparable<key>> {
         _maxSize = size;
         a =(key[]) new Comparable[size+1];
         _orientation = orientation;
-
     }
 
 
     public PriorityQueue(key[] arr,  Orientation orientation)
     {
-        _maxSize = a.length;
-        a = arr.clone();
+        _maxSize = arr.length;
+        a = (key[])  new Comparable[_maxSize+1];
+        for (int i = 1; i <=_maxSize; i++) {
+            a[i] = arr[i-1];
+        }
+        _size = _maxSize;
         _orientation = orientation;
 
         for (int i = _maxSize/2; i > 0 ; i--) {
@@ -36,9 +39,11 @@ public class PriorityQueue<key extends Comparable<key>> {
         }
     }
 
+    public int size(){return _size;}
+
     private  boolean isFull()
     {
-        return a.length == _size;
+        return _maxSize == _size;
     }
 
     public boolean isEmpty()
@@ -51,7 +56,13 @@ public class PriorityQueue<key extends Comparable<key>> {
         if(isFull())
         {
             // todo 扩容
-            throw new IllegalStateException("queue is full");
+            //throw new IllegalStateException("queue is full");
+            key tmp[] = (key[]) new Comparable[2*_maxSize+1];
+            _maxSize = 2*_maxSize;
+            for (int i = 0; i <= _size; i++) {
+                tmp[i] = a[i];
+            }
+            a = tmp;
         }
 
         a[++_size] = v;
@@ -70,6 +81,15 @@ public class PriorityQueue<key extends Comparable<key>> {
 
         exch(1, _size--);
         sink(1);
+
+        if( _size == _maxSize/4 ){
+            _maxSize = _maxSize/2;
+            key tmp[] = (key[]) new Comparable[_maxSize+1];
+            for (int i = 0; i <= _size; i++) {
+                tmp[i] = a[i];
+            }
+            a = tmp;
+        }
 
         return res;
     }
