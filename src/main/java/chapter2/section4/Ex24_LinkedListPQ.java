@@ -52,6 +52,7 @@ public class Ex24_LinkedListPQ <key extends Comparable<key>>{
                 tmpNode.item = tmp;
             }
 
+
             node.parent = tmpNode;
 
             if( tmpNode.second != null && less(tmpNode.first.item, tmpNode.second.item) )
@@ -60,7 +61,7 @@ public class Ex24_LinkedListPQ <key extends Comparable<key>>{
             }
             else if(tmpNode.first != null){
                 tmpNode.second = node;
-                tmpNode = tmpNode.first;
+                tmpNode = null;
             }
             else {
                 tmpNode.first = node;
