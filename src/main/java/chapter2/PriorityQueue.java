@@ -23,6 +23,10 @@ public class PriorityQueue<key extends Comparable<key>> {
         _orientation = orientation;
     }
 
+    public key peek()
+    {
+        return a[1];
+    }
 
     public PriorityQueue(key[] arr,  Orientation orientation)
     {
