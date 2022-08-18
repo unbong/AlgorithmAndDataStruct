@@ -26,12 +26,11 @@ public class Ex27_HeapWithLastNode<Key extends Comparable<Key>> {
             throw new IllegalStateException("queue is full.");
         }
 
-        if(_lastIndex == 0) _lastIndex = 1;
-        else if(less(val, a[_lastIndex])) {
-            _lastIndex = _size+1;
-        }
+
         a[++_size] = val;
         swim(_size);
+
+
     }
 
     public Key top()
@@ -61,14 +60,27 @@ public class Ex27_HeapWithLastNode<Key extends Comparable<Key>> {
     private void swim(int i){
 
         Key tmp = a[_size];
+        // 如果加进来的比最小的值还小 更新最小指针
+        if(_lastIndex == 0) _lastIndex = 1;
+        else if( less(tmp, a[_lastIndex])) {
+            _lastIndex = _size;
+        }
         while(i/2>0)
         {
             int p = i/2;
             if(less(a[p], tmp)) a[i] = a[p];
             else { break; }
-            i = i/2;
+            // 如果被加进来的项目是最小指针的子项目，则必会发生交换，更新指针。
+            if( p == _lastIndex)
+            {
+                _lastIndex = i;
+            }
+            i = p;
+
         }
         a[i] = tmp;
+
+
 
     }
 
@@ -87,21 +99,38 @@ public class Ex27_HeapWithLastNode<Key extends Comparable<Key>> {
             i = c;
         }
         a[i] = tmp;
+        //
+        if(_lastIndex == _size+1)
+        {
+            _lastIndex =i;
+        }
+    }
 
+    public Key min()
+    {
+        return a[_lastIndex];
     }
 
     public static void main(String[] args) {
 
-        Ex27_HeapWithLastNode pq = new Ex27_HeapWithLastNode(9);
+        Ex27_HeapWithLastNode pq = new Ex27_HeapWithLastNode(19);
 
         pq.insert(8);
         pq.insert(1);
         pq.insert(3);
         pq.insert(9);
         pq.insert(10);
+        pq.insert(19);
+        pq.insert(11);
+        pq.insert(13);
+        pq.insert(19);
+        pq.insert(-1);
 
-        while(pq.isEmpty() == false)
-            StdOut.println(pq.top());
+        while(pq.isEmpty() == false) {
+            StdOut.print(pq.top());
+            StdOut.println( " min " + pq.min());
+        }
+
 
         StdOut.print();
     }
