@@ -3,6 +3,8 @@ package chapter2;
 import utils.ArrayUtils;
 import utils.IntRandom;
 
+import java.util.Comparator;
+
 public class HeapSort {
 
     public static void sort(Comparable a[])
@@ -18,6 +20,41 @@ public class HeapSort {
         {
             ArrayUtils.exch(a, 1, N--);
             sink(a, 1, N);
+        }
+    }
+
+    public static void sortDesc(Comparable a[], Comparator c)
+    {
+        int N = a.length-1;
+        for (int i = N/2; i >=1; i--) {
+            sink(a, i, N, c);
+        }
+
+        while(N>1)
+        {
+            ArrayUtils.exch(a, 1, N--);
+            sink(a, 1, N , c);
+        }
+    }
+
+    private static void sink(Comparable a[], int k , int N , Comparator<Comparable> c)
+    {
+        while(2*k <= N)
+        {
+            int child = 2* k;
+            if(2*k < N)
+            {
+                if(c.compare(a[child], a[child+1]) >  0){
+                    child++;
+                }
+            }
+
+            if(c.compare(a[k], a[child])> 0)
+            {
+                ArrayUtils.exch(a, k, child);
+            }
+            else break;
+            k = child;
         }
     }
 
@@ -38,7 +75,7 @@ public class HeapSort {
                 ArrayUtils.exch(a, k, p);
             }
             else break;
-            k = 2*k;
+            k = p;
         }
     }
 

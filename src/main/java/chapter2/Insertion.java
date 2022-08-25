@@ -29,6 +29,30 @@ public class Insertion {
         }
     }
 
+    public static int[] indirectSort(Comparable[] a)
+    {
+        int N = a.length;
+        int res[] = new int[a.length];
+
+        for (int i = 0; i < N; i++) {
+            res[i] = i;
+        }
+        for (int i = 1; i < a.length; i++) {
+            for (int j = i; j > 0&& less(a[res[j]], a[res[j-1]]) ; j--) {
+                indirectExch(res, j-1, j);
+            }
+        }
+
+        return res;
+    }
+
+    private static void indirectExch(int a[], int i, int j) {
+        int tmp = a[i];
+        a[i] = a[j];
+        a[j] = tmp;
+
+    }
+
     private static boolean less(Comparable v, Comparable w)
     {
         return v.compareTo(w)< 0;

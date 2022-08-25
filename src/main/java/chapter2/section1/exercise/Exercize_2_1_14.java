@@ -1,6 +1,5 @@
 package chapter2.section1.exercise;
 
-import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.ArrayList;
