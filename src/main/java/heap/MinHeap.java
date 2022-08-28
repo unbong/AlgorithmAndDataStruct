@@ -1,7 +1,5 @@
 package heap;
 
-import java.util.Arrays;
-
 public class MinHeap <E extends Comparable<E>>{
 
     private Node<E>[] array = null;
