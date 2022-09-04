@@ -354,7 +354,7 @@ public class BinarySearchTree <Key extends Comparable<Key>, Value>{
     }
 
     public int height(){
-        if(root == null) throw new RuntimeException("root is null.");
+
         return height(root);
     }
 
@@ -374,6 +374,55 @@ public class BinarySearchTree <Key extends Comparable<Key>, Value>{
         show(node.left);
         StdOut.print(node.key+ ", ");
         show(node.right);
+    }
+
+
+    public void levelShowKey(){
+        Queue<Node> queue = new Queue<>();
+        queue.enqueue(root);
+        queue.enqueue(null);
+        boolean swt = true;
+        while(!queue.isEmpty()){
+
+
+            Node item = queue.dequeue();
+            if(item == null){
+                StdOut.println();
+                swt =true;
+                if(!queue.isEmpty())
+                    queue.enqueue(null);
+            }
+            else{
+
+                int maxHeight = height(item)+1;
+                double lc = Math.pow(2.0,(double)maxHeight);
+                //if(swt){
+
+                for (int i = 0; i < lc/2; i++) {
+                    StdOut.print(" ");
+                }
+                StdOut.print(item.key.toString());
+                for (int i = 0; i < lc/2; i++) {
+                    StdOut.print(" ");
+                }
+                swt=!swt;
+                //}
+//                else{
+//
+//                    StdOut.print(item.key.toString()+ ", ");
+//
+//                    for (int i = 0; i <  lc/2; i++) {
+//                        StdOut.print(" ");
+//                    }
+//
+//                    swt=!swt;
+//                }
+
+                if(item.left != null) queue.enqueue(item.left);
+                if(item.right != null) queue.enqueue(item.right);
+            }
+
+        }
     }
 
 

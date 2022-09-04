@@ -1,0 +1,96 @@
+E       E
+
+A        E
+      A_R
+
+S        E
+      A    S
+
+Y        E
+      A    S
+             Y_R
+Y        E
+      A     Y
+          S_R
+
+Q        E
+      A     Y
+          S_R
+         Q_R
+
+Q        E
+      A     S
+          Q_R  Y_R
+
+Q        E
+      A     S_R
+          Q   Y
+
+Q          S
+       E_R    Y
+      A   Q
+
+U          S
+       E_R    Y
+      A   Q  U_R
+
+R          S
+       E_R    Y
+      A   Q U_R
+           R_R
+
+T          S
+       E_R    U
+      A   Q T_R  Y_R
+
+T          S
+       E_R    U_R
+      A   Q T   Y
+
+T          S
+        E     U
+      A   Q T   Y
+
+I          S
+        E     U
+      A   Q T   Y
+        I_R
+
+O          S
+        E     U
+      A   Q T   Y
+        I_R
+          O_R
+
+O          S
+        E     U
+      A   Q T   Y
+        O_R
+       I_R
+
+O          S
+        E     U
+      A   O T   Y
+        I_R Q_R
+
+O          S
+        E     U
+      A   O_R T   Y
+        I  Q
+
+O          S
+        O     U
+      E_R  Q T   Y
+     A  I
+
+N          S
+        O     U
+      E_R  Q T   Y
+     A  I
+         N_R
+
+N          S
+        O     U
+      E_R  Q T   Y
+     A  N
+       I_R

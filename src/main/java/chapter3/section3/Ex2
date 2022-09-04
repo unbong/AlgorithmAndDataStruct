@@ -1,0 +1,36 @@
+insert
+Y           Y
+
+L          LY
+
+P            P
+           L    Y
+
+M            P
+        L M     Y
+
+X            P
+        L M     X Y
+
+H            L P
+          H   M  X Y
+
+
+C             L P
+           C H  M  X Y
+
+R              P
+             L    R
+           CH M     XY
+
+A              P
+             CL    R
+           A H M     XY
+
+E               EP
+             C  L   R
+           A H   M   XY
+
+S               EP
+             C  L   RS
+           A H   M   XY
