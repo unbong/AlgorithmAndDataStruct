@@ -3,6 +3,8 @@ package chapter3;
 import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.StdOut;
 
+import java.util.NoSuchElementException;
+
 public class RedBlackTree <Key extends Comparable<Key>, Value>{
 
     private static final boolean RED = true;
@@ -64,7 +66,7 @@ public class RedBlackTree <Key extends Comparable<Key>, Value>{
 
         if(!isRed(node.left) && isRed(node.right)) node =  rotateLeft(node);
         if(isRed(node.left) && isRed(node.left.left)) node = rotateRight(node);
-        if(isRed(node.left) && isRed(node.right))  node = flipColor(node);
+        if(isRed(node.left) && isRed(node.right))   flipColors(node);
         node.size = size(node.left)+ size(node.right)+1;
         return node;
     }
@@ -75,7 +77,74 @@ public class RedBlackTree <Key extends Comparable<Key>, Value>{
      * @param key
      */
     public void delete(Key key){
+        if(key == null) throw new IllegalArgumentException("key is null.");
+        if(!contains(key)) return;
 
+        if(!isRed(root.left) && !isRed(root.right))
+            root.color = RED;
+
+        root = delete(root,key);
+        if(!isEmpty()) root.color = BLACK;
+    }
+
+    private Node delete(Node node, Key key){
+        if(key.compareTo(node.key)<0) {
+            if(!isRed(node.left) && !isRed(node.left.left))
+                node = moveRedLeft(node);
+            node.left = delete(node.left, key);
+        }
+        else{
+            if(!isRed(node.left))
+                node = rotateRight(node);
+            if(key.compareTo(node.key) == 0 && node.right == null)
+                return null;
+            if(!isRed(node.right) && !isRed(node.right.left)){
+                node = moveRedRight(node);
+            }
+
+            if(key.compareTo(node.key)==0){
+                Node x = min(node.right);
+                node.key = x.key;
+                node.value = x.value;
+                node.right = deleteMin(node.right);
+            }
+            else node.right = delete(node.right,key);
+        }
+        return balance(node);
+    }
+
+    private Node balance(Node node) {
+        if (isRed(node.right) && !isRed(node.left))    node = rotateLeft(node);
+        if (isRed(node.left) && isRed(node.left.left)) node = rotateRight(node);
+        if (isRed(node.left) && isRed(node.right))     flipColors(node);
+
+        node.size = size(node.left) + size(node.right) + 1;
+        return node;
+    }
+
+    private void flipColors(Node node) {
+        node.color = !node.color;
+        node.left.color = !node.left.color;
+        node.right.color = !node.right.color;
+    }
+
+    private Node moveRedRight(Node h) {
+        flipColors(h);
+        if (isRed(h.left.left)) {
+            h = rotateRight(h);
+            flipColors(h);
+        }
+        return h;
+    }
+
+    private Node moveRedLeft(Node h) {
+        flipColors(h);
+        if (isRed(h.right.left)) {
+            h.right = rotateRight(h.right);
+            h = rotateLeft(h);
+            flipColors(h);
+        }
+        return h;
     }
 
     /**
@@ -164,11 +233,46 @@ public class RedBlackTree <Key extends Comparable<Key>, Value>{
     }
 
     public void deleteMax(){
-        delete(max());
+        if(isEmpty()) throw new NoSuchElementException("BST underflow");
+
+        if(!isRed(root.left) && !isRed(root.right))
+            root.color = RED;
+        root = deleteMax(root);
+        if(!isEmpty()) root.color = BLACK;
+    }
+
+    private Node deleteMax(Node node){
+        if(isRed(node.left))
+            node = rotateRight(node);
+        if(node.right == null)
+            return null;
+        if(!isRed(node.right) && !isRed(node.right.left))
+            node = moveRedRight(node);
+        node.right = deleteMax(node.right);
+        return balance(node);
     }
 
     public void deleteMin(){
-        delete(min());
+        if (isEmpty()) throw new NoSuchElementException("BST underflow");
+
+        // if both children of root are black, set root to red
+        if (!isRed(root.left) && !isRed(root.right))
+            root.color = RED;
+
+        root = deleteMin(root);
+        if (!isEmpty()) root.color = BLACK;
+        // assert check();
+    }
+
+    private Node deleteMin(Node node){
+        if (node.left == null)
+            return null;
+
+        if (!isRed(node.left) && !isRed(node.left.left))
+            node = moveRedLeft(node);
+
+        node.left = deleteMin(node.left);
+        return balance(node);
     }
 
 
@@ -241,18 +345,6 @@ public class RedBlackTree <Key extends Comparable<Key>, Value>{
         return x;
     }
 
-    /**
-     * 转换颜色
-     * @param node
-     * @return
-     */
-    private Node flipColor(Node node){
-        node.right.color = BLACK;
-        node.left.color = BLACK;
-        node.color = RED;
-        return node;
-    }
-
     public int size(){
         return size(root);
     }
@@ -308,7 +400,7 @@ public class RedBlackTree <Key extends Comparable<Key>, Value>{
                     }
                     swt=!swt;
                 //}
-//                else{
+//                else{·56231
 //
 //                    StdOut.print(item.key.toString()+ ", ");
 //

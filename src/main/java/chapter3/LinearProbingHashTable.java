@@ -9,7 +9,7 @@ public class LinearProbingHashTable <Key, Value>{
     protected int N ;
     protected int M;
     private static final int INIT_CAPACITY =16;
-
+    // 各种数的*2 后小于该数的最大素数集合
     private static final int[] PRIMES = {
             1, 1, 3, 7, 13, 31, 61, 127, 251, 509, 1021, 2039, 4093, 8191, 16381,
             32749, 65521, 131071, 262139, 524287, 1048573, 2097143, 4194301,

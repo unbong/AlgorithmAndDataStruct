@@ -1,5 +1,6 @@
 package chapter3;
 
+import chapter3.Section5.Ex3_BinarySearchSET;
 import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.StdOut;
 import sun.awt.util.IdentityLinkedList;
@@ -258,7 +259,7 @@ public class BinarySearchTree <Key extends Comparable<Key>, Value>{
         if(cmp < 0){
             return rank(node.left, key);
         }
-        else if(cmp<0){
+        else if(cmp>0){
             return 1+ size(node.left) + rank(node.right, key);
         }
         else{
@@ -424,6 +425,8 @@ public class BinarySearchTree <Key extends Comparable<Key>, Value>{
 
         }
     }
+
+
 
 
 
