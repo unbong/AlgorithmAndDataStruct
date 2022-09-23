@@ -6,9 +6,7 @@ public class Cycle {
 
     private boolean marked[];
     private int edgeTo[];
-    private Stack<Integer> stack;
-    private boolean hasCycle;
-
+    private Stack<Integer> cycle;
     public Cycle(Graph g){
 
         marked = new boolean[g.V()];
@@ -21,19 +19,30 @@ public class Cycle {
         }
     }
 
-    public boolean hasSelfLoop(){
-        return hasCycle;
-    }
 
-    private void dfs(Graph g, int v, int u){
-        marked[v]=true;
-        for (int w: g.adj(v))
-        {
-            if(u ==w) hasCycle = true;
-            marked[w] = true;
-            dfs(g,w,v);
+    private void dfs(Graph G, int u, int v) {
+        marked[v] = true;
+        for (int w : G.adj(v)) {
+
+            // short circuit if cycle already found
+            if (cycle != null) return;
+
+            if (!marked[w]) {
+                edgeTo[w] = v;
+                dfs(G, v, w);
+            }
+
+            // check for cycle (but disregard reverse of edge leading to v)
+            else if (w != u) {
+                cycle = new Stack<Integer>();
+                for (int x = v; x != w; x = edgeTo[x]) {
+                    cycle.push(x);
+                }
+                cycle.push(w);
+                cycle.push(v);
+            }
         }
     }
 
-    public boolean isHasCycle(){return hasCycle;}
+    public boolean isHasCycle(){return cycle != null;}
 }

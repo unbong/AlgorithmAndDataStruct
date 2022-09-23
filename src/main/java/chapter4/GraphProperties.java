@@ -19,7 +19,7 @@ public class GraphProperties {
     {
         radius = Integer.MIN_VALUE;
         for (int i = 0; i < g.V(); i++) {
-            BreadthFirstSearch bfs = new BreadthFirstSearch(g, i);
+            BreadthFirstPaths bfs = new BreadthFirstPaths(g, i);
 
             for (int j = 0; j < g.V(); j++) {
                 if(i == j) continue;

@@ -1,11 +1,10 @@
 package chapter4;
 
 import chapter1.section3.Queue;
-import chapter4.section1.Ex13_BFSWithDistance;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 
-public class BreadthFirstSearch {
+public class BreadthFirstPaths {
     private static final int INFINITY = Integer.MAX_VALUE;
     private boolean marked[];
     private final int s;
@@ -13,7 +12,7 @@ public class BreadthFirstSearch {
 
     private int dist[];
 
-    public BreadthFirstSearch(Graph g, int s){
+    public BreadthFirstPaths(Graph g, int s){
         this.s = s;
         marked= new boolean[g.V()];
         edgeTo = new int[g.V()];
@@ -81,7 +80,7 @@ public class BreadthFirstSearch {
         Graph g = new Graph(in);
 
         //StdOut.print(g.toString());
-        BreadthFirstSearch ex = new BreadthFirstSearch(g, 0);
+        BreadthFirstPaths ex = new BreadthFirstPaths(g, 0);
 
         StdOut.print(ex.distTo(3));
         StdOut.println("");
