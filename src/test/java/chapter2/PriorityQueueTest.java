@@ -3,8 +3,6 @@ package chapter2;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class PriorityQueueTest {
 
     @Test
@@ -16,9 +14,9 @@ class PriorityQueueTest {
         pq.insert(2);
         Assertions.assertEquals(3,pq.size());
 
-        Assertions.assertEquals(4,pq.max());
-        Assertions.assertEquals(3,pq.max());
-        Assertions.assertEquals(2,pq.max());
+        Assertions.assertEquals(4,pq.pop());
+        Assertions.assertEquals(3,pq.pop());
+        Assertions.assertEquals(2,pq.pop());
     }
 
     @Test
@@ -31,7 +29,7 @@ class PriorityQueueTest {
         Assertions.assertEquals(16, pq.size());
 
         for (int i = 0; i < 12; i++) {
-            pq.max();
+            pq.pop();
         }
         Assertions.assertEquals(4, pq.size());
     }

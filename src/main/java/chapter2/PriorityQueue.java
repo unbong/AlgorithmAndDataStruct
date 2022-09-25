@@ -1,6 +1,5 @@
 package chapter2;
 
-import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 import utils.ArrayUtils;
 import utils.IntRandom;
@@ -14,9 +13,19 @@ public class PriorityQueue<key extends Comparable<key>> {
     private int _maxSize = 0;
     private Orientation _orientation;
 
+    private int INIT_CAPACITY = 16;
+
     public enum Orientation{
         MAX,MIN;
     }
+
+    public PriorityQueue(Orientation orientation)
+    {
+        _maxSize = INIT_CAPACITY;
+        a = (key[]) new Comparable[_maxSize+1];
+        _orientation = orientation;
+    }
+
     public PriorityQueue(int size , Orientation orientation){
         _maxSize = size;
         a =(key[]) new Comparable[size+1];
@@ -74,7 +83,12 @@ public class PriorityQueue<key extends Comparable<key>> {
         swim(_size);
     }
 
-    public key max()
+    /**
+     * 去的优先队列中第一个结点，是最大值还是最小去，取决于创建类是指定的类型。
+     * 名字取得不好。
+     * @return
+     */
+    public key pop()
     {
         if(isEmpty())
         {
@@ -165,7 +179,7 @@ public class PriorityQueue<key extends Comparable<key>> {
 
         while (!q.isEmpty())
         {
-            StdOut.print(q.max().intValue()+", ");
+            StdOut.print(q.pop().intValue()+", ");
         }
 
     }

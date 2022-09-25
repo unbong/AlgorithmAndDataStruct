@@ -1,5 +1,8 @@
 package chapter4;
 
+import chapter4.section3.Edge;
+import chapter4.section3.EdgeWeighedGraph;
+
 public class ConnectedComponent {
 
     private boolean marked[];
@@ -7,8 +10,31 @@ public class ConnectedComponent {
     private int count;
 
 
+    public ConnectedComponent(EdgeWeighedGraph g){
+
+        marked = new boolean[g.vertices()];
+        id = new int[g.vertices()];
+
+        for (int i = 0; i < g.vertices(); i++) {
+           if(!marked[i]) {
+               dfs(g, i);
+               count++;
+           }
+        }
+    }
+
+    private void dfs(EdgeWeighedGraph g, int vertex){
+        marked[vertex] = true;
+        id[vertex] = count;
+        for (Edge edge: g.adjacent(vertex)){
+            int other = edge.other(vertex);
+            if( !marked[other]) {
+                dfs(g, other);
+            }
+        }
+    }
+
     public ConnectedComponent(Graph g) {
-        count = 0;
         marked = new boolean[g.V()];
         id = new int[g.V()];
         for (int i = 0; i < g.V(); i++) {

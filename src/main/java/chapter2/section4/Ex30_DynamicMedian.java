@@ -34,10 +34,10 @@ public class Ex30_DynamicMedian<Key extends Comparable<Key>>{
 
             if(maxPQ.size() - minPQ.size() > 1)
             {
-                minPQ.insert(maxPQ.max());
+                minPQ.insert(maxPQ.pop());
             }else if(minPQ.size() - maxPQ.size() > 0)
             {
-                maxPQ.insert(minPQ.max());
+                maxPQ.insert(minPQ.pop());
                 //maxPQ.insert(minPQ.max());
             }
         }
