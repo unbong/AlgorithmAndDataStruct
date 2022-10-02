@@ -1,7 +1,8 @@
 package chapter4;
 
 import chapter1.section3.Stack;
-import edu.princeton.cs.algs4.Point2D;
+import chapter4.section4.DirectedEdge;
+import chapter4.section4.EdgeWeightedDigraph;
 import edu.princeton.cs.algs4.Queue;
 
 /**
@@ -28,6 +29,29 @@ public class DepthFirstOrder {
 
             if(! marked[currentVertex]) dfs(dg, currentVertex);
         }
+    }
+
+
+    public DepthFirstOrder(EdgeWeightedDigraph graph){
+        marked = new boolean[graph.vertex()];
+        pre = new Queue<>();
+        post = new Queue<>();
+        reversePost = new Stack<>();
+        for (int currentVertex = 0; currentVertex < graph.vertex(); currentVertex++) {
+            if(!marked[currentVertex]) dfs(graph, currentVertex);
+        }
+    }
+
+    private void dfs(EdgeWeightedDigraph graph, int vertex){
+        marked[vertex] = true;
+        pre.enqueue(vertex);
+        for(DirectedEdge edge: graph.adjacenties(vertex)){
+            int to = edge.to();
+            if(!marked[to])
+                dfs(graph, to );
+        }
+        post.enqueue(vertex);
+        reversePost.push(vertex);
     }
 
     public Iterable<Integer> pre(){return pre;}

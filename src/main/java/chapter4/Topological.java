@@ -1,5 +1,8 @@
 package chapter4;
 
+import chapter4.section4.EdgeWeightedDigraph;
+import chapter4.section4.EdgeWeightedDirectedCycle;
+
 /**
  * 拓扑排序
  */
@@ -20,6 +23,19 @@ public class Topological {
         order = depthFirstOrder.reversePost();
     }
 
+    public Topological(EdgeWeightedDigraph g){
+
+        EdgeWeightedDirectedCycle cycle = new EdgeWeightedDirectedCycle(g);
+        if( cycle.hasCycle()) return;
+
+        DepthFirstOrder depthFirstOrder = new DepthFirstOrder(g);
+        order = depthFirstOrder.reversePost();
+    }
+
+    /**
+     * 是否为无环加权图
+     * @return
+     */
     public boolean isDAG(){return order != null;}
 
     public Iterable<Integer> order(){

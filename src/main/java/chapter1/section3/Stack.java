@@ -74,7 +74,7 @@ public class Stack <T> implements Iterable<T>{
         // todo
         @Override
         public boolean hasNext() {
-            return current.next != null;
+            return current != null;
         }
 
         @Override

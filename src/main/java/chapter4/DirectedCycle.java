@@ -1,6 +1,8 @@
 package chapter4;
 
 import chapter1.section3.Stack;
+import chapter4.section4.DirectedEdge;
+import chapter4.section4.EdgeWeightedDigraph;
 
 /**
  * 检测环
@@ -24,6 +26,8 @@ public class DirectedCycle {
         }
 
     }
+
+
 
     /**
      * 深度优先的方法，当存在环被标记的顶点且是调用栈中的顶点时即判定为环
