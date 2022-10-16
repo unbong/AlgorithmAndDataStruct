@@ -1,6 +1,4 @@
-package chapter5.secton1;
-
-import edu.princeton.cs.algs4.StdOut;
+package chapter5.section1;
 
 public class Alphabet {
 

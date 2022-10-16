@@ -1,4 +1,4 @@
-package chapter5.secton1.Ex;
+package chapter5.section1.Ex;
 
 import chapter1.section3.Queue;
 import edu.princeton.cs.algs4.StdOut;

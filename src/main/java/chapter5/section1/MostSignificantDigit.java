@@ -1,6 +1,5 @@
-package chapter5.secton1;
+package chapter5.section1;
 
-import chapter2.Insertion;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
