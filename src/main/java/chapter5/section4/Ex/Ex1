@@ -1,0 +1,8 @@
+AAAA
+
+
+Regular expression for strings that contain no more than four consecutive As:
+A{0-4}([^A]A{0-4})*
+
+Regular expression for strings that contain at least one occurrence of four consecutive As:
+.*(AAAA)+.*

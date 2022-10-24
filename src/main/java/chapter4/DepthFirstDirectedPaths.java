@@ -7,8 +7,9 @@ public class DepthFirstDirectedPaths {
     private boolean marked[];
     public DepthFirstDirectedPaths(Digraph dg, int source){
 
-        validateVertex(source);
+
         marked = new boolean[dg.vertex()];
+        validateVertex(source);
         for(int w: dg.adjacent(source)) {
             dfs(dg, w);
         }
