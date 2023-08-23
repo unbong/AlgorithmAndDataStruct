@@ -1,6 +1,5 @@
 package chapter3;
 
-import com.sun.xml.internal.ws.policy.AssertionSet;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.StdOut;

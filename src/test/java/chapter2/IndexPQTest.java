@@ -4,6 +4,8 @@ import edu.princeton.cs.algs4.In;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Date;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -13,6 +15,9 @@ class IndexPQTest {
 
     @Test
     void insert() {
+
+        Date date = new Date();
+        System.out.println(date.getTime());
 
         IndexPQ<Integer> ipq = new IndexPQ<>(10,IndexPQ.Orientation.MAX );
 

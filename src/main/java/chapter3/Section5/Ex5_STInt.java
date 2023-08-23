@@ -1,7 +1,6 @@
 package chapter3.Section5;
 
 import chapter3.RedBlackTree;
-import com.sun.org.apache.bcel.internal.generic.BALOAD;
 import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.ST;
 import edu.princeton.cs.algs4.StdOut;

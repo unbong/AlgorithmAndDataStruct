@@ -3,7 +3,6 @@ package chapter3;
 import chapter3.Section5.Ex3_BinarySearchSET;
 import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.StdOut;
-import sun.awt.util.IdentityLinkedList;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
